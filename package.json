@@ -1,0 +1,25 @@
+{
+  "name": "pa61_formulario_diazjose",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^5.9.0",
+    "jsdom-quokka-plugin": "^1.0.13",
+    "stylelint": "^9.9.0"
+  },
+  "quokka": {
+    "plugins": [
+      "jsdom-quokka-plugin"
+    ],
+    "jsdom": {
+      "file": "./index.html"
+    }
+  }
+}

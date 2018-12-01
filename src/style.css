@@ -1,0 +1,26 @@
+/* General Style */
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    border: 2px solid black;
+    box-shadow: 4px 4px 8px black;
+    padding: 2em;
+}
+
+form * {
+    padding: .4em;
+    margin: .2em;
+}
+
+/* NIF */
+
+.nif-container, .dob-container, .password-container, .role-container, .gender-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
