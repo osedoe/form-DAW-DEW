@@ -1,3 +1,4 @@
+// ==== Variable declaration ==== //
 const form = document.querySelector('form');
 
 const nif = {
@@ -19,15 +20,19 @@ const password = {
 const reset = document.querySelector('#reset');
 
 const regex = {
-  nif: /[0-9]{8}[A-Z]|[X-Z][0-9]{7}[A-Z]/
+  nif: /[0-9]{8}[A-Z]|[X-Z][0-9]{7}[A-Z]/,
+  dob: /[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}/
 };
 const placeholder = {
   nif: 'Introduzca su NIF sin espacios en blanco ni guiones',
-  dob: 'Introduzca fecha en el siguiente formato DD / MM / AAA',
+  dob: 'DD/MM/AAAA',
 
 };
 
-// Main functions
+//
+// ==== Main functions ==== //
+
+// Loader
 window.addEventListener('load', () => {
   nif.input.value = placeholder.nif;
   dob.input.value = placeholder.dob;
@@ -42,20 +47,17 @@ reset.addEventListener('click', () => {
 form.addEventListener('submit', function (event) {
   event.preventDefault();
   checkNIF();
+  checkDOB();
 });
 
 // NIF related functions
-function displayErrorTooltip(errorSpan) {
-  errorSpan.className += ' enable';
-}
-
 function checkNIF() {
   if (nif.input.value == '' || nif.input.value == placeholder.nif) {
     return displayErrorTooltip(nif.input.nextElementSibling);
   }
   nif.input.value = nif.input.value.toUpperCase();
   return (regex.nif.test(nif.input.value)) ?
-    alert('nif.input/NIE correcto') :
+    1 :
     (nif.input.value = '', displayErrorTooltip(nif.input.nextElementSibling.nextElementSibling));
 }
 
@@ -67,33 +69,29 @@ nif.input.addEventListener('blur', function () {
   return (this.value == '') ? this.value = placeholder.nif : 0;
 });
 
+//
+// Date of Birth (dob) related functions
 
+function checkDOB() {
+  if (dob.input.value == '' || dob.input.value == placeholder.dob) {
+    return displayErrorTooltip(dob.input.nextElementSibling);
+  }
+  return (regex.dob.test(dob.input.value)) ?
+    1 :
+    (dob.input.value = '', displayErrorTooltip(dob.input.nextElementSibling.nextElementSibling));
 
+}
 
+dob.input.addEventListener('focus', function () {
+  this.value = '';
+});
 
+dob.input.addEventListener('blur', function () {
+  return (this.value == '') ? this.value = placeholder.dob : 0;
+});
 
-
-
-
-
-
-
-
-
-
-
-// nif.addEventListener('blur', () => {
-//   nif.value = nif.value.toUpperCase();
-//   if (nif.value.length < 8 && nif.value !== '') {
-//     nif.value = nif.value.padStart(8, '0');
-//   }
-//   return (regex.test(nif.value)) ? display.textContent = 'nif/NIE correcto' : display.textContent = 'nif/NIE incorrecto'
-// });
-
-// input.addEventListener('focus', () => {
-//   input.value = '';
-// });
-
-// input.addEventListener('blur', () => {
-//   input.value = placeholder;
-// });
+//
+// ==== Utils ==== //
+function displayErrorTooltip(errorSpan) {
+  errorSpan.className += ' enable';
+}

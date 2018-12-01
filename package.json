@@ -3,23 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^5.9.0",
-    "jsdom-quokka-plugin": "^1.0.13",
-    "stylelint": "^9.9.0"
-  },
-  "quokka": {
-    "plugins": [
-      "jsdom-quokka-plugin"
-    ],
-    "jsdom": {
-      "file": "./src/index.html"
-    }
+    "eslint": "^5.9.0"
   }
 }
