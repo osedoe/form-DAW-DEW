@@ -20,21 +20,32 @@ form * {
 
 .nif-container,
 .dob-container,
-.password-container,
 .role-container,
 .gender-container {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
 }
 
-.nif-container{
-    /* display: relative; */
+.password-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
 }
+
+input[type=text],
+input[type=password] {
+    border: 1px solid black;
+    height: 40px;
+}
+
 /* ID */
 
 /* Date of Birth */
 
 /* Password */
+
+/* #password {
+    height: 30px;
+} */
 
 .password-input {
     display: grid;
@@ -101,7 +112,7 @@ form * {
 /* Error */
 .error {
     background: tomato;
-    border-radius: 2px;
+    border-radius: 4px;
     box-shadow: 4px 4px 4px black;
     display: none;
     color: white;
