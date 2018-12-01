@@ -19,7 +19,7 @@
       "jsdom-quokka-plugin"
     ],
     "jsdom": {
-      "file": "./index.html"
+      "file": "./src/index.html"
     }
   }
 }

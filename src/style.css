@@ -24,9 +24,12 @@ form * {
 .role-container,
 .gender-container {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 2fr 1fr;
 }
 
+.nif-container{
+    /* display: relative; */
+}
 /* ID */
 
 /* Date of Birth */
@@ -35,7 +38,7 @@ form * {
 
 .password-input {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr;
 }
 
 .password-input a {
@@ -93,4 +96,18 @@ form * {
 .btn-container {
     display: flex;
     justify-content: center;
+}
+
+/* Error */
+.error {
+    background: tomato;
+    border-radius: 2px;
+    box-shadow: 4px 4px 4px black;
+    display: none;
+    color: white;
+    text-shadow: 0 0 24x black;
+}
+
+.enable {
+    display: inline !important;
 }
