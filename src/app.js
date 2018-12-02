@@ -20,6 +20,7 @@ const password = {
 };
 
 const reset = document.querySelector('#reset');
+const submit = document.querySelector('#submit');
 
 const regex = {
   nif: /[0-9]{8}[A-Z]|[X-Z][0-9]{7}[A-Z]/,
@@ -61,12 +62,12 @@ function checkNIF() {
     return displayErrorTooltip(nif.input.nextElementSibling);
   }
   nif.input.value = nif.input.value.toUpperCase();
-  // Ternary operator that 
-  return (!regex.nif.test(nif.input.value)) ?
-    (nif.input.value = '',
-    nif.container.style.border = '2px solid tomato',
-    displayErrorTooltip(nif.input.nextElementSibling.nextElementSibling)) :
-    1;
+
+  if (!regex.nif.test(nif.input.value)) {
+    nif.input.value = '';
+    nif.container.style.border = '2px solid tomato';
+    displayErrorTooltip(nif.input.nextElementSibling.nextElementSibling);
+  }
 }
 
 nif.input.addEventListener('focus', function () {
@@ -84,10 +85,12 @@ function checkDOB() {
     dob.container.style.border = '2px solid tomato';
     return displayErrorTooltip(dob.input.nextElementSibling);
   }
-  return (!regex.dob.test(dob.input.value)) ?
-    (dob.input.value = '',
-    dob.container.style.border = '2px solid tomato',
-    displayErrorTooltip(dob.input.nextElementSibling.nextElementSibling)) : 1;
+
+  if (!regex.dob.test(dob.input.value)) {
+    dob.input.value = '';
+    dob.container.style.border = '2px solid tomato';
+    displayErrorTooltip(dob.input.nextElementSibling.nextElementSibling);
+  }
 }
 
 dob.input.addEventListener('focus', function () {
@@ -104,11 +107,13 @@ function checkPassword() {
   if (password.input.value == '') {
     password.container.style.border = '2px solid tomato';
     return displayErrorTooltip(password.input.nextElementSibling);
-  } else if (password.input.value.length < 6) {
+  }
+  if (password.input.value.length < 6) {
     password.container.input.style.border = '2px solid tomato';
     return displayErrorTooltip(password.nextElementSibling.nextElementSibling);
   }
 }
+
 password.buttonsContainer.addEventListener('click', function (event) {
   event.preventDefault();
   if (event.target.tagName === 'BUTTON' && password.input.value.length < 6) {
@@ -119,6 +124,13 @@ password.buttonsContainer.addEventListener('click', function (event) {
 password.clearPass.addEventListener('click', event => {
   event.preventDefault();
   password.input.value = '';
+});
+
+//
+// ==== Success event ==== //
+submit.addEventListener('click', event => {
+  event.preventDefault();
+  // TODO: Add green modal to success event
 });
 
 //

@@ -1,6 +1,11 @@
 /* General Style */
+h1 {
+    color: white;
+    text-shadow: 4px 2px 2px black;
+}
 
 body {
+    background: dimgrey;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8,8 +13,9 @@ body {
 }
 
 form {
-    border: 2px solid black;
+    background: white;
     box-shadow: 4px 4px 8px black;
+    width: 60vw;
     padding: 2em;
 }
 
