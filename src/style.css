@@ -16,12 +16,12 @@ form {
     background: white;
     box-shadow: 4px 4px 8px black;
     width: 60vw;
-    padding: 2em;
+    padding: .8em;
 }
 
 form * {
-    padding: .4em;
-    margin: .2em;
+    padding: .2em;
+    margin: .1em;
 }
 
 .nif-container,
@@ -85,6 +85,12 @@ input[type=password] {
     grid-area: "input";
 }
 
+img {
+    display: none;
+    height: 80px;
+    width: 80px;
+}
+
 .role-input,
 .gender-input {
     display: grid;
@@ -107,6 +113,8 @@ input[type=password] {
 .img-container {
     grid-area: 2 / 2 / 3 / 3;
     justify-self: right;
+    height: 100px;
+    width: 100px;
 }
 
 /* Button */

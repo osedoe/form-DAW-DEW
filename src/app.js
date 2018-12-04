@@ -1,5 +1,6 @@
 // ==== Variable declaration ==== //
 const form = document.querySelector('form');
+const reset = document.querySelector('#reset');
 
 const nif = {
   container: document.querySelector('.nif-container'),
@@ -19,8 +20,14 @@ const password = {
   buttons: document.querySelectorAll('.btn-pass-container button')
 };
 
-const reset = document.querySelector('#reset');
-const submit = document.querySelector('#submit');
+const gender = {
+  container: document.querySelector('.gender-container'),
+  imgContainer: document.querySelector('.img-container'),
+  male: document.getElementById('male'),
+  female: document.getElementById('female'),
+  maleImg: document.getElementById('male-img'),
+  femaleImg: document.getElementById('female-img')
+};
 
 const regex = {
   nif: /[0-9]{8}[A-Z]|[X-Z][0-9]{7}[A-Z]/,
@@ -61,6 +68,7 @@ function checkNIF() {
     nif.container.style.border = '2px solid tomato';
     return displayErrorTooltip(nif.input.nextElementSibling);
   }
+
   nif.input.value = nif.input.value.toUpperCase();
 
   if (!regex.nif.test(nif.input.value)) {
@@ -116,7 +124,7 @@ function checkPassword() {
 
 password.buttonsContainer.addEventListener('click', function (event) {
   event.preventDefault();
-  if (event.target.tagName === 'BUTTON' && password.input.value.length < 6) {
+  if (event.target.tagName === 'BUTTON' && password.sinput.value.length < 6) {
     password.input.value += event.target.value;
   }
 });
@@ -127,10 +135,17 @@ password.clearPass.addEventListener('click', event => {
 });
 
 //
-// ==== Success event ==== //
-submit.addEventListener('click', event => {
-  event.preventDefault();
-  // TODO: Add green modal to success event
+// ==== Image ==== //
+gender.container.addEventListener('click', event => {
+  let maleDisplay = gender.maleImg.style.display;
+  let femaleDisplay = gender.femaleImg.style.value;
+  if (event.target.value === 'male') {
+    femaleDisplay = 'none';
+    maleDisplay = 'block';
+  } else if (event.target.value === 'female') {
+    maleDisplay = 'none';
+    femaleDisplay = 'block';
+  }
 });
 
 //
