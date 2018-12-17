@@ -30,7 +30,7 @@ const gender = {
 };
 
 const regex = {
-  nif: /[0-9]{8}[A-Z]|[X-Z][0-9]{7}[A-Z]/,
+  nif: /[0-9]{8}[A-Za-z]|[X-Zx-z][0-9]{7}[A-Za-z]/,
   dob: /[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}/
 };
 
@@ -56,26 +56,28 @@ reset.addEventListener('click', () => {
 
 // On Submit
 form.addEventListener('submit', function (event) {
-  event.preventDefault();
-  checkNIF();
-  checkDOB();
-  checkPassword();
+
+  if (checkNIF() && checkDOB() && checkPassword()) {
+    alert('Todo guay'); 
+  }
+  return event.preventDefault();
 });
 
 // NIF related functions
 function checkNIF() {
-  if (nif.input.value == '' || nif.input.value == placeholder.nif) {
+  const error1 = nif.input.nextElementSibling;
+  const error2 = nif.input.nextElementSibling.nextElementSibling;
+
+  if (nif.input.value === '' || nif.input.value === placeholder.nif) {
     nif.container.style.border = '2px solid tomato';
-    return displayErrorTooltip(nif.input.nextElementSibling);
+    displayErrorTooltip(error1);
   }
-
-  nif.input.value = nif.input.value.toUpperCase();
-
-  if (!regex.nif.test(nif.input.value)) {
+  else if (!regex.nif.test(nif.input.value)) {
     nif.input.value = '';
     nif.container.style.border = '2px solid tomato';
-    displayErrorTooltip(nif.input.nextElementSibling.nextElementSibling);
+    displayErrorTooltip(error2);
   }
+  return true;
 }
 
 nif.input.addEventListener('focus', function () {
@@ -89,16 +91,18 @@ nif.input.addEventListener('blur', function () {
 //
 // Date of Birth (dob) related functions
 function checkDOB() {
+  const error1 = dob.input.nextElementSibling;
+  const error2 = dob.input.nextElementSibling.nextElementSibling;
   if (dob.input.value == '' || dob.input.value == placeholder.dob) {
     dob.container.style.border = '2px solid tomato';
-    return displayErrorTooltip(dob.input.nextElementSibling);
+    displayErrorTooltip(error1);
   }
-
-  if (!regex.dob.test(dob.input.value)) {
+  else if (!regex.dob.test(dob.input.value)) {
     dob.input.value = '';
     dob.container.style.border = '2px solid tomato';
-    displayErrorTooltip(dob.input.nextElementSibling.nextElementSibling);
+    displayErrorTooltip(error2);
   }
+  return true;
 }
 
 dob.input.addEventListener('focus', function () {
@@ -106,25 +110,30 @@ dob.input.addEventListener('focus', function () {
 });
 
 dob.input.addEventListener('blur', function () {
-  return (this.value == '') ? this.value = placeholder.dob : 0;
+  if (this.value == '') this.value = placeholder.dob;
 });
 
 //
 // Password
 function checkPassword() {
+  const error1 = password.input.nextElementSibling;
+  const error2 = password.input.nextElementSibling.nextElementSibling;
   if (password.input.value == '') {
     password.container.style.border = '2px solid tomato';
-    return displayErrorTooltip(password.input.nextElementSibling);
+    displayErrorTooltip(error1);
+    return false;
   }
-  if (password.input.value.length < 6) {
+  if (password.input.value.length < 6 || password.input.value !== '012345') {
     password.container.input.style.border = '2px solid tomato';
-    return displayErrorTooltip(password.nextElementSibling.nextElementSibling);
+    displayErrorTooltip(error2);
+    return false;
   }
+  return;
 }
 
 password.buttonsContainer.addEventListener('click', function (event) {
   event.preventDefault();
-  if (event.target.tagName === 'BUTTON' && password.sinput.value.length < 6) {
+  if (event.target.tagName === 'BUTTON' && password.input.value.length < 6) {
     password.input.value += event.target.value;
   }
 });
@@ -137,14 +146,12 @@ password.clearPass.addEventListener('click', event => {
 //
 // ==== Image ==== //
 gender.container.addEventListener('click', event => {
-  let maleDisplay = gender.maleImg.style.display;
-  let femaleDisplay = gender.femaleImg.style.value;
   if (event.target.value === 'male') {
-    femaleDisplay = 'none';
-    maleDisplay = 'block';
+    gender.femaleImg.style.display = 'none';
+    gender.maleImg.style.display = 'block';
   } else if (event.target.value === 'female') {
-    maleDisplay = 'none';
-    femaleDisplay = 'block';
+    gender.maleImg.style.display = 'none';
+    gender.femaleImg.style.display = 'block';
   }
 });
 
